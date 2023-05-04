@@ -86,4 +86,29 @@ class LinkedList
     end
     print "nil"
   end
+
+  def insert_at(value, i)
+    return puts "Incorrect index" if i > size
+    if i.zero?
+      prepend(value)
+    else
+      new_node = Node.new(value, at(i))
+      previous.next_node = new_node
+      previous = at(i - 1)
+      @tail = new_node if new_node.next_node.nil?
+    end
+  end
+
+  def remove_at(index)
+    return puts "Incorrect index" if i > size
+    if index.zero?
+      @head = at(1)
+    elsif at(index) == @tail
+      @tail = at(index - 1)
+      @tail.next_node = nil
+    else
+      prev = at(index - 1)
+      prev.next_node = at(index + 1)
+    end
+  end
 end
